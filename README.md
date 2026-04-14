@@ -11,24 +11,24 @@ Extract up to 150 pages from a large PDF into a new, smaller file — useful for
 ## Usage
 
 ```bash
-python3 extract_pdf_pages.py <input.pdf> [output.pdf] [--start N] [--end N]
+./extract <input.pdf> [output.pdf] [--start N] [--end N]
 ```
 
 ### Examples
 
 **Extract the first 150 pages (default):**
 ```bash
-python3 extract_pdf_pages.py my_book.pdf
+./extract my_book.pdf
 ```
 
 **Extract a specific range:**
 ```bash
-python3 extract_pdf_pages.py my_book.pdf output.pdf --start 80 --end 229
+./extract my_book.pdf output.pdf --start 80 --end 229
 ```
 
 **Custom output filename:**
 ```bash
-python3 extract_pdf_pages.py my_book.pdf chapter1.pdf --start 1 --end 150
+./extract my_book.pdf chapter1.pdf --start 1 --end 150
 ```
 
 ## Options
