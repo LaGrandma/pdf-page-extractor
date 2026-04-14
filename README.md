@@ -5,11 +5,8 @@ Extract up to 150 pages from a large PDF into a new, smaller file — useful for
 ## Requirements
 
 - Python 3.7+
-- [pypdf](https://pypi.org/project/pypdf/)
 
-```bash
-pip install pypdf
-```
+> `pypdf` is installed automatically the first time you run the script.
 
 ## Usage
 

@@ -9,15 +9,19 @@ import argparse
 from pathlib import Path
 
 
-def extract_pages(input_path: str, output_path: str, start: int, end: int):
+def ensure_pypdf():
     try:
-        from pypdf import PdfReader, PdfWriter
+        import pypdf  # noqa: F401
     except ImportError:
-        try:
-            from PyPDF2 import PdfReader, PdfWriter
-        except ImportError:
-            print("Error: Install pypdf first:  pip install pypdf")
-            sys.exit(1)
+        print("pypdf not found, installing...")
+        import subprocess
+        subprocess.check_call([sys.executable, "-m", "pip", "install", "pypdf"])
+        print("pypdf installed successfully.\n")
+
+
+def extract_pages(input_path: str, output_path: str, start: int, end: int):
+    ensure_pypdf()
+    from pypdf import PdfReader, PdfWriter
 
     reader = PdfReader(input_path)
     total_pages = len(reader.pages)
