@@ -38,16 +38,22 @@ python3 extract_pdf_pages.py my_book.pdf chapter1.pdf --start 1 --end 150
 | `input` | *(required)* | Path to the source PDF |
 | `output` | `input_extracted.pdf` | Path for the output PDF |
 | `--start` | `1` | First page to extract (1-indexed) |
-| `--end` | `150` | Last page to extract |
+| `--end` | *(start + limit - 1)* | Last page to extract |
+| `--limit` | `150` | Max pages to extract (up to 300) |
 
-> **Note:** The extracted range is capped at 150 pages. If your `--start`/`--end` range spans more than 150 pages, it will be automatically clamped.
+## Chapter-aware extraction
+
+If the PDF has a table of contents, the script automatically snaps to the nearest chapter boundary before the limit — so you never cut off mid-chapter.
+
+For example, with `--limit 150`, if a chapter ends at page 137 and the next one would go past 150, the script stops at 137.
+
+If the PDF has no bookmarks, it falls back to the exact page limit.
 
 ## Output
 
-The script prints the total page count, the range being extracted, and the final file size so you can confirm it fits within any upload limits before sharing.
-
 ```
 Total pages in source PDF: 612
-Extracting pages 1–150 (150 pages)...
-Saved: my_book_extracted.pdf  (18.3 MB)
+Snapping to nearest chapter boundary: page 137 (chapter ends here before limit of 150)
+Extracting pages 1–137 (137 pages)...
+Saved: my_book_extracted.pdf  (15.2 MB)
 ```
